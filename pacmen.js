@@ -51,13 +51,19 @@ function update() {
 
 function checkCollisions(item) {
   // TODO: detect collision with all walls and make pacman bounce
-  // window.innerWidth 
-  if (item.newimg.x >= window.innerWidth){
-    item.position.x -= Math.random() * 200;
+  if (item.position.x + item.velocity.x + item.newimg.width >= window.innerWidth || item.position.x + item.velocity.x < 0){
+    item.velocity.x = -item.velocity.x;
   }
-  if (item.newimg.y >= window.innerHeight){
-    item.position.y -= Math.random() * 200;
+  if (item.position.y + item.velocity.y + item.newimg.height >= window.innerHeight || item.position.y + item.velocity.y < 0){
+    item.velocity.y = -item.velocity.y;
   }
+  // Another way:
+  // if (item.newimg.x > window.innerWidth || item.newimg.x < 0){
+  //   item.velocity.x = -item.velocity.x;
+  // }
+  // if (item.newimg.y > window.innerHeight || item.newimg.y < 0){
+  //   item.velocity.y = -item.velocity.y;
+  // }
 }
 
 function makeOne() {
